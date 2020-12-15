@@ -2,16 +2,16 @@
   "name": "webpack-1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "webpack.config.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build":"rm -rf dist && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^5.10.1",
-    "webpack-cli": "^4.2.0"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }

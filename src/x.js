@@ -1,1 +1,1 @@
-console.log("xxx");
+export default 'xxx'
