@@ -1,38 +1,23 @@
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+
+const base = require('./webpack.config.base.js')
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  ...base,
+  mode: "development",
+  devtool: "inline-source-map",
   devServer: {
-    contentBase: './dist',
+    contentBase: "./dist"
   },
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name][contenthash].js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "xiaobangsky",
-      template: "./src/assets/index.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].[contenthash].css',
-      ignoreOrder:false
-    })
-  ],
   module: {
     rules: [
+      ...base.module.rules,
       {
-        test: /\.css$/,
-        use: [
-         'style-loader',
-          'css-loader'
-        ],
-      },
-    ],
-  }
-};
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
+      }
+    ]
+  },
+}

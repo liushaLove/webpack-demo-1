@@ -1,43 +1,35 @@
-const path = require('path');
+
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const base = require('./webpack.config.base.js')
 
 module.exports = {
-  mode: 'production',
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-  },
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name][contenthash].js'
-  },
+  ...base,
+  mode: "production",
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "xiaobangsky",
-      template: "./src/assets/index.html"
-    }),
+    ...base.plugins,
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
-      ignoreOrder:false
-    })
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
   ],
   module: {
     rules: [
+      ...base.module.rules,
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath:'../',
+              publicPath: '../',
             },
           },
-          'css-loader'
+          'css-loader',
         ],
-      },
-    ],
+      }
+    ]
   }
 };
