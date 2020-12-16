@@ -3,7 +3,6 @@ import jpg from "./assets/img.jpg";
 console.log(jpg);
 
 const div = document.getElementById("app");
-div.innerHTML =`<img src='${jpg}'>`;
 
 const btn = document.createElement("button");
 btn.innerText = '懒加载';
